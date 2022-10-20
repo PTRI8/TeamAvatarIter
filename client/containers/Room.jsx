@@ -98,6 +98,7 @@ function Room() {
 
   // blackboard js
   useEffect(() => {
+    //https://codepen.io/aundreyd/pen/WxYNeV
     let color = $(".selected").css("background-color");
     const $canvas = $("canvas");
     let context = $canvas[0].getContext("2d");
@@ -212,7 +213,7 @@ function Room() {
         </div>
       </div>
       <DocumentEditor hostView={hostView}/>
-      <Chatbox />
+      <Chatbox roomInfo={info}/>
     </div>
   );
 }

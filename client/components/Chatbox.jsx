@@ -1,21 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@mui/material';
 
-function Chatbox() {
-  const fakeMessages = [
-    {from: 'lewis', body: 'yo!'},
-    {from: 'peipei', body: 'bye'}
-  ];
-  const [messageList, setMessages] = useState(fakeMessages);
-  // need function to retrieve messages
+function Chatbox(props) {
+  const [messagesArr, setMessageArr] = useState([{name: "Lewis", body: "yo!"}, {name: "Peipei", body: "bye"}]);
 
-  const messages = messageList.map((e, i) => {
-    return (<p key={i}>{e.from}: {e.body}</p>);
-  });
+  let messages = [];
+  // fetch(`/api/rooms/update/${props.roomInfo._id}`, {
+  //   method: 'PATCH',
+  //   headers: {
+  //     'Content-type': 'application/json'
+  //   },
+  //   body: JSON.stringify({})
+  // })
+
+  // updating messaging area
+  useEffect(() => {
+    messages = messagesArr.map((v,i) => {
+      console.log('message', {name: v.name, body: v.body})
+      return <p key={i}>{v.name}: {v.body}</p>;
+    });
+    console.log("messages",messages)
+  }, []);
 
   return (
     <div className='chatbox'>
       <div id='message-container'>
+        {console.log("Rendering Messages...", messages)}
         {messages}
       </div>
       <form>
