@@ -2,50 +2,47 @@ import React, { useState, useEffect } from 'react';
 import FlashCard from '../components/Flashcard';
 import Dropdown from '../components/Dropdown';
 import flashdata from './flashdata';
+import { IoAddCircleOutline } from "react-icons/io5";
 import '../stylesheets/flash.scss';
-import Axios from 'axios';
 
 
 const FlashContainer = () => {
-  const [subjectList, setSubjectList] = useState([]);
-  const [sub, setSub] = useState(flashdata[0].subject);
-  const [questions, setQuestions] = useState(flashdata[0].questions);
 
-  const loadSubjects = async (event) => {
-    //const subject = event.target.value;
+  const [subjectList, setSubjectList] = useState([]);
+  const [questions, setQuestions] = useState(flashdata[0].questions);
+  const [index, setIndex] = useState(0);
+
+  const loadSubjects = async () => {
     try {
-      Axios.get('/api/home')
-        .then(res => console.log(res));
+      fetch('/api/home')
+        .then(res => res.json())
+        .then(res => {
+          console.log(res[0].questions);
+          setSubjectList(res);
+          setQuestions(res[0].questions);
+          console.log(questions);
+          
+        });   
     }
     catch (err) {
       console.log(err);
     }
   };
 
-  // const findQuestions = (sub) => {
-  //   for (let obj in subjectList) {
-  //     if (obj.subject === sub) {
-  //       setQuestions(obj.questions);
-  //       console.log(questions);
-  //     }
-  //   }
-  // };
-
-
   useEffect(() => {
-    //loadSubjects();
-    setSubjectList(flashdata);
-    //findQuestions(sub);
+   
+    loadSubjects();
+    //setSubjectList(flashdata);
   }, []);
     
   return (
     <section className="flashcontainer">
       <div className="topbutton">
-        <Dropdown subjectList={subjectList} setSub={setSub} questions={ questions} setQuestions = {setQuestions} />
-        <button>add</button>
+        <Dropdown subjectList={subjectList} questions={questions} setQuestions = {setQuestions} />
+        <button className = 'reacticon'><IoAddCircleOutline/></button>
       </div>
-      <div className="questionindex">1/10</div>
-      <FlashCard sub={sub} subjectList={subjectList} questions={ questions} />
+      <div className="questionindex">{index + 1}/{questions.length}</div>
+      <FlashCard subjectList={subjectList} questions={questions} setQuestions={setQuestions} index={index} setIndex={setIndex} />
     </section>
   );
 };
