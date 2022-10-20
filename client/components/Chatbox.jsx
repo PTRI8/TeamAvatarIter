@@ -3,8 +3,7 @@ import { Button } from '@mui/material';
 
 function Chatbox(props) {
   const [messagesArr, setMessageArr] = useState([{name: "Lewis", body: "yo!"}, {name: "Peipei", body: "bye"}]);
-
-  let messages = [];
+  let messages = [<p key={0}>Lewis: yo!</p>, <p key={1}>Peipei: bye</p>];
   // fetch(`/api/rooms/update/${props.roomInfo._id}`, {
   //   method: 'PATCH',
   //   headers: {

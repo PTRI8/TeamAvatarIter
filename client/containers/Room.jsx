@@ -213,7 +213,7 @@ function Room() {
         </div>
       </div>
       <DocumentEditor hostView={hostView}/>
-      <Chatbox roomInfo={info}/>
+      <Chatbox roomInfo={state.info}/>
     </div>
   );
 }

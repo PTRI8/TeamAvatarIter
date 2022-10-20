@@ -26,6 +26,7 @@ function RoomEditor({ fetchUser, closeModal, action, id }) {
         pendingUsers: [],
         active: true,
         classroom: true,
+        messageList: [],
       }),
     }).then((response) => response.json());
 
