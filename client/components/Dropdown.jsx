@@ -21,7 +21,7 @@ const Dropdown = ({ subjectList, questions, setQuestions,setSub }) => {
     <form >
       <label>
        
-        <select onChange={chooseSub}>
+        <select onChange={chooseSub} className = 'dropdown'>
           
           {subjectList.map((sub,index) => <option value={sub.subject} key = {index}>{sub.subject}</option>)}
         </select>

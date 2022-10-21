@@ -4,6 +4,8 @@ import Dropdown from '../components/Dropdown';
 import flashdata from './flashdata';
 import { IoAddCircleOutline } from 'react-icons/io5';
 import '../stylesheets/flash.scss';
+import { IoChevronForward, IoChevronBack } from 'react-icons/io5';
+import { MdCached } from 'react-icons/md';
 
 
 const FlashContainer = () => {
@@ -45,11 +47,8 @@ const FlashContainer = () => {
 
   const submit = () => {
     pop.style.display = 'none';
-   
     fetch('/api/home', {
-	
       method: 'POST',
-	
       body: JSON.stringify({
         subject: sub,
         questions: [...questions,[question,answer]],
@@ -61,15 +60,24 @@ const FlashContainer = () => {
       .then(response => response.json())
       .then(json => {
         console.log(json);
-        //setSubjectList(json);
+        setSubjectList(json);
       });
-
   };
 
   const cancel = () => {
     pop.style.display = 'none';
   };
-    
+  
+  const previous = () => {
+    if (index === 0) setIndex(questions.length - 1);
+    else setIndex(index - 1);
+  };
+  const next = () => {
+    if (index === questions.length - 1) setIndex(0);
+    else setIndex(index + 1);
+  };
+
+
   return (
     <section className="flashcontainer">
       <div className="flashCardPopup" >
@@ -80,10 +88,15 @@ const FlashContainer = () => {
       </div>
       <div className="topbutton">
         <Dropdown subjectList={subjectList} questions={questions} setQuestions = {setQuestions} setSub = {setSub} />
-        <button className = 'reacticon' onClick = {popup}><IoAddCircleOutline/></button>
+        <IoAddCircleOutline className = 'addbtn' onClick = {popup}/>
       </div>
       <div className="questionindex">{index + 1}/{questions.length}</div>
       <FlashCard subjectList={subjectList} questions={questions} setQuestions={setQuestions} index={index} setIndex={setIndex} />
+    
+      <button onClick = {previous} className = 'btn'><IoChevronBack className="flashbutton" /></button>
+      <button onClick = {next} className = 'btn'><IoChevronForward className="flashbutton" /></button>
+
+
     </section>
   );
 };

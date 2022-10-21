@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { IoChevronForward, IoChevronBack } from "react-icons/io5";
-import { MdCached } from "react-icons/md";
+
 
 const Flashcard = ({ sub, subjectList, questions, setQuestions,index, setIndex }) => {
   const [flip, setFlip] = useState(0);
@@ -19,34 +18,43 @@ const Flashcard = ({ sub, subjectList, questions, setQuestions,index, setIndex }
     else setIndex(index + 1);
   };
   
-  //   return (
-  //     <div className={`card ${flip ? 'flip' : ''}`}>
-  //       <div className='front'>
-  //         {questions[index][0]}
-  //       </div>
-  //       <div className='back'>
-  //         {questions[index][1]}
-  //       </div>
-  //       {/* <p> {flip ? questions[index][1] : questions[index][0]}</p> */}
-  //       <div className='flipbtn'>
-  //         <button  onClick={() => setFlip(!flip)}>flip</button>
-  //       </div>
-  //     </div>
-  //   );
-  
-  // };
 
   return (
-
-    <div className="flashcard">
-     
-      <p className='question'>{questions[index][flip]}</p>
-      <button onClick = {handleClick} ><MdCached /></button>
-      <div>
-        <button className="flashbutton" onClick = {previous}><IoChevronBack /></button>
-        <button className="flashbutton" onClick = {next}><IoChevronForward /></button>
+   
+    <div className="flip-box">
+      <div className="flip-box-inner">
+        <div className="flip-box-front">
+          <h2 className='flashh2'> Question</h2>
+          <p className = 'flashcardtext'> {questions[index][0]}</p>
+        </div>
+        <div className="flip-box-back">
+          <h2 className='flashh2'>Answer</h2>
+          <p className = 'flashcardtext'>{ questions[index][1]}</p>
+        </div>
       </div>
     </div>
+
+
+
+
+    
+  // <div className="flip-box">
+  //   <div className="flip-box-inner">
+  //     <div className="flip-box-front">
+  //       <p className='question'>{questions[index][0]}</p>
+  //       <button onClick = {handleClick} ><MdCached /></button>
+  //       <div>
+  //         <div className="flip-box-back">
+  //           <h2>Answer</h2>
+  //           <p className='question'>{questions[index][1]}</p>
+  //   </div>
+  // <button className="flashbutton" onClick = {previous}><IoChevronBack /></button>
+  // <button className="flashbutton" onClick = {next}><IoChevronForward /></button>
+  // </div>
+  //     </div>
+  //   </div>
+  // </div>
+    
   );
 };
 
