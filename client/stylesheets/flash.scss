@@ -6,7 +6,15 @@
     margin: auto;
     margin-top: 100px;
     border-radius: 2rem;
+    position:relative;
  
+
+}
+.flashCardPopup {
+  position:absolute;
+  top:20px;
+  left:20px;
+  display:none;
 
 }
 
@@ -29,6 +37,13 @@
     text-align: center;
     background-color: white;
     border-radius: 1rem;
+    transition: 0.5s;
+    transform: rotateY(0deg);
+    perspective: 1000px;
+}
+.flashcard:hover {
+    border: solid #e61a1a;
+    transform: rotateY(180deg);
 }
 .question{
     margin:40px;

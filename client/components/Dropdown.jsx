@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 
 
-const Dropdown = ({ subjectList, questions, setQuestions }) => {
+const Dropdown = ({ subjectList, questions, setQuestions,setSub }) => {
 
   const chooseSub =  (event) => {
     const subject = event.target.value;
+    setSub(subject);
+  
     for (const obj of subjectList) {
       if (obj.subject === subject) {
         setQuestions(obj.questions);
