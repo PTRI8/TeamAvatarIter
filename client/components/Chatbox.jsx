@@ -3,33 +3,42 @@ import { Button } from '@mui/material';
 
 function Chatbox(props) {
   const [messagesArr, setMessageArr] = useState([{name: "Lewis", body: "yo!"}, {name: "Peipei", body: "bye"}]);
-  let messages = [<p key={0}>Lewis: yo!</p>, <p key={1}>Peipei: bye</p>];
-  // fetch(`/api/rooms/update/${props.roomInfo._id}`, {
-  //   method: 'PATCH',
-  //   headers: {
-  //     'Content-type': 'application/json'
-  //   },
-  //   body: JSON.stringify({})
-  // })
 
-  // updating messaging area
-  useEffect(() => {
-    messages = messagesArr.map((v,i) => {
-      console.log('message', {name: v.name, body: v.body})
-      return <p key={i}>{v.name}: {v.body}</p>;
+  const sendMessage = () => {
+    const inputVal = document.getElementById('chatInput').value;
+    fetch(`/api/rooms/update/${props.roomInfo._id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({messageList: [...messagesArr, {name: props.username, body: inputVal}]})
     });
-    console.log("messages",messages)
+  }
+
+  useEffect(() => {
+    setInterval(() => {
+      fetch('/api/rooms/cookie')
+      .then((data) => data.json())
+      .then((data) => {
+        if(data.messageList.length > messagesArr.length) {
+          setMessageArr([...data.messageList]);
+          console.log('interval');
+        }
+      });
+    }, 1000);
   }, []);
 
   return (
     <div className='chatbox'>
       <div id='message-container'>
-        {console.log("Rendering Messages...", messages)}
-        {messages}
+        {messagesArr.map((v,i) => {
+          // console.log('message', {name: v.name, body: v.body})
+          return <p key={i}>{v.name}: {v.body}</p>;
+        })}
       </div>
       <form>
-        <input type='text'></input>
-        <Button variant='text'>Send</Button>
+        <input id='chatInput' type='text'></input>
+        <Button variant='text' onClick={sendMessage}>Send</Button>
       </form>
     </div>
   );
