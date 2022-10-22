@@ -13,18 +13,18 @@ function Chatbox(props) {
       },
       body: JSON.stringify({messageList: [...messagesArr, {name: props.username, body: inputVal}]})
     });
-  }
+  };
 
   useEffect(() => {
     setInterval(() => {
       fetch('/api/rooms/cookie')
-      .then((data) => data.json())
-      .then((data) => {
-        if(data.messageList.length > messagesArr.length) {
-          setMessageArr([...data.messageList]);
-          console.log('interval');
-        }
-      });
+        .then((data) => data.json())
+        .then((data) => {
+          if(data.messageList.length > messagesArr.length) {
+            setMessageArr([...data.messageList]);
+            console.log('interval');
+          }
+        });
     }, 1000);
   }, []);
 
