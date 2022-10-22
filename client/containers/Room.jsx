@@ -37,9 +37,11 @@ function Room() {
     console.log(room);
     setInfo(room);
   };
-  
+
   const fetchUsername = async () => {
-    const userData = await fetch('/api/users').then(response => response.json());
+    const userData = await fetch('/api/users').then((response) =>
+      response.json()
+    );
     console.log('profile user data', userData);
     setUsername(userData.username);
   };
@@ -76,14 +78,14 @@ function Room() {
   // js for collapsible button
   useEffect(() => {
     const coll = document.getElementsByClassName('collapsible');
-    
+
     for (let i = 0; i < coll.length; i++) {
       console.log(coll[i].getAttribute('listener'));
-      if(coll[i].getAttribute('listener') !== 'true') {
-        coll[i].addEventListener('click', function() {
+      if (coll[i].getAttribute('listener') !== 'true') {
+        coll[i].addEventListener('click', function () {
           this.classList.toggle('active');
           const content = this.nextElementSibling;
-          if (content.style.maxHeight){
+          if (content.style.maxHeight) {
             content.style.maxHeight = null;
           } else {
             content.style.maxHeight = content.scrollHeight + 'px';
@@ -97,12 +99,13 @@ function Room() {
   useEffect(() => {
     const fileReader = new FileReader();
     const input = document.getElementById('blackBoardUploadButton');
-    input.addEventListener('change', function(e) {
+    input.addEventListener('change', function (e) {
       console.log(fileReader);
-      fileReader.onload = (e) => {setImgUrl(e.target.result);};
+      fileReader.onload = (e) => {
+        setImgUrl(e.target.result);
+      };
       fileReader.readAsDataURL(this.files[0]);
     });
-    
   }, []);
 
   // blackboard js
@@ -113,9 +116,9 @@ function Room() {
     const context = $canvas[0].getContext('2d');
     let lastEvent;
     let mouseDown = false;
-    
+
     //When clicking on control list items
-    $('.controls').on('click', 'li', function() {
+    $('.controls').on('click', 'li', function () {
       //Deselect sibling elements
       $(this).siblings().removeClass('selected');
       //Select clicked element
@@ -123,27 +126,30 @@ function Room() {
       //cache current color
       color = $(this).css('background-color');
     });
-    
+
     //When "New Color" is pressed
-    $('#revealColorSelect').click(function() {
+    $('#revealColorSelect').click(function () {
       //Show color select or hide the color select
       changeColor();
       $('#colorSelect').toggle();
     });
-    
+
     //update the new color span
     function changeColor() {
       const r = $('#red').val();
       const g = $('#green').val();
       const b = $('#blue').val();
-      $('#newColor').css('background-color', 'rgb(' + r + ',' + g + ', ' + b + ')');
+      $('#newColor').css(
+        'background-color',
+        'rgb(' + r + ',' + g + ', ' + b + ')'
+      );
     }
-    
+
     //When color sliders change
     $('input[type=range]').change(changeColor);
-    
+
     //When "Add Color" is pressed
-    $('#addNewColor').click(function() {
+    $('#addNewColor').click(function () {
       //Append the color to the controls ul
       var $newColor = $('<li></li>');
       $newColor.css('background-color', $('#newColor').css('background-color'));
@@ -151,61 +157,96 @@ function Room() {
       //Select the new color
       $newColor.click();
     });
-    
+
     //On mouse events on the canvas
-    $canvas.mousedown(function(e) {
-      lastEvent = e;
-      mouseDown = true;
-    }).mousemove(function(e) {
-      //Draw lines
-      if (mouseDown) {
-        context.beginPath();
-        context.moveTo(lastEvent.offsetX, lastEvent.offsetY);
-        context.lineTo(e.offsetX, e.offsetY);
-        context.strokeStyle = color;
-        context.stroke();
+    $canvas
+      .mousedown(function (e) {
         lastEvent = e;
-      }
-    }).mouseup(function() {
-      mouseDown = false;
-    }).mouseleave(function() {
-      $canvas.mouseup();
-    });
+        mouseDown = true;
+      })
+      .mousemove(function (e) {
+        //Draw lines
+        if (mouseDown) {
+          context.beginPath();
+          context.moveTo(lastEvent.offsetX, lastEvent.offsetY);
+          context.lineTo(e.offsetX, e.offsetY);
+          context.strokeStyle = color;
+          context.stroke();
+          lastEvent = e;
+        }
+      })
+      .mouseup(function () {
+        mouseDown = false;
+      })
+      .mouseleave(function () {
+        $canvas.mouseup();
+      });
   }, []);
 
   return (
     <div className="room-page">
       <div id="room-page-info">
-        <h2>Host: {info.host && (info.host.nickname || hostInfo.nickname)} </h2>
+        <h2>
+          {info.classroom ? 'Teacher: ' : 'Host: '}{' '}
+          {info.host && (info.host.nickname || hostInfo.nickname)}{' '}
+        </h2>
       </div>
-      <button type="button" className="collapsible">Blackboard</button>
+      <button type="button" className="collapsible">
+        Blackboard
+      </button>
       <div className="content">
         <div>
           {/* Canvas width is 90% of the screen's width minus 100px. The height is 60% of the canvas width*/}
-          <canvas style={{backgroundImage: `url(${imgUrl})`}} width={(window.innerWidth * 0.90) - 100} height={((window.innerWidth * 0.90) - 100) * .6}></canvas>
+          <canvas
+            style={{ backgroundImage: `url(${imgUrl})` }}
+            width={window.innerWidth * 0.9 - 100}
+            height={(window.innerWidth * 0.9 - 100) * 0.6}></canvas>
           <div className="controls">
-            <div style={{paddingBottom: '50px'}}>
+            <div style={{ paddingBottom: '50px' }}>
               <ul>
                 <li className="red selected"></li>
                 <li className="blue"></li>
                 <li className="yellow"></li>
               </ul>
-              <button id="revealColorSelect" className="buttonDesign">New Color</button>
+              <button id="revealColorSelect" className="buttonDesign">
+                New Color
+              </button>
             </div>
             <div id="colorSelect">
               <span id="newColor"></span>
               <div className="sliders">
                 <p>
                   <label htmlFor="red">Red</label>
-                  <input id="red" name="red" type="range" min='0' max='255' defaultValue='0'/>
+                  <input
+                    id="red"
+                    name="red"
+                    type="range"
+                    min="0"
+                    max="255"
+                    defaultValue="0"
+                  />
                 </p>
                 <p>
                   <label htmlFor="green">Green</label>
-                  <input id="green" name="green" type="range" min='0' max='255' defaultValue='0'/>
+                  <input
+                    id="green"
+                    name="green"
+                    type="range"
+                    min="0"
+                    max="255"
+                    defaultValue="0"
+                  />
                 </p>
                 <p>
                   <label htmlFor="blue">Blue</label>
-                  <input id="blue" name="blue" type="range" min='0' max='255' defaultValue='0'/>
+                  <input
+                    id="blue"
+                    name="blue"
+                    type="range"
+                    min="0"
+                    max="255"
+                    defaultValue="0"
+                  />
                 </p>
               </div>
               <div>
@@ -214,19 +255,25 @@ function Room() {
             </div>
             <div>
               <label className="uploadFileLabel buttonDesign" htmlFor="">
-                <input className="buttonDesign" type='file' id='blackBoardUploadButton'/>
+                <input
+                  className="buttonDesign"
+                  type="file"
+                  id="blackBoardUploadButton"
+                />
                 Upload File
               </label>
             </div>
           </div>
         </div>
       </div>
-      <button type="button" className="collapsible">Flashcards</button>
+      <button type="button" className="collapsible">
+        Flashcards
+      </button>
       <div className="content">
         <FlashContainer />
       </div>
-      <DocumentEditor hostView={hostView}/>
-      <Chatbox username={username} roomInfo={state.info}/>
+      <DocumentEditor hostView={hostView} />
+      <Chatbox username={username} roomInfo={state.info} />
     </div>
   );
 }

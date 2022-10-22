@@ -15,7 +15,32 @@
   font-size: 60px;
   color: #2b5635;
   text-align: center;
+  animation: slideIn 1.5s linear;
 }
+
+@keyframes slideIn {
+  0% {
+    translate: -100vw;
+  }
+  60% {
+    translate: 0;
+  }
+}
+
+.newlogo {
+  opacity: 1;
+  animation: pop 1.8s linear;
+}
+@keyframes pop {
+  0% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0;
+    color: $accent-color;
+  }
+}
+
 #slogan {
   color: $accent-color;
   text-align: center;
