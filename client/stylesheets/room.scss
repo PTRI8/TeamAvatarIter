@@ -81,14 +81,14 @@
 }
 
 canvas {
-  background: #fff;
+  background: #086b2d;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   display: block;
   margin: 50px auto 10px;
-  border-radius: 5px;
-  box-shadow: 0 0 15px black;
+  border: solid 8px #885a0b;
+  box-shadow: 0 0 8px black;
   // cursor: url(../img/cursor.png), crosshair;
 }
 
@@ -125,6 +125,10 @@ canvas {
 .content ul li {
   display: inline-block;
   margin: 0 5px 10px;
+}
+
+.white {
+  background: #ffffff;
 }
 
 .red {
