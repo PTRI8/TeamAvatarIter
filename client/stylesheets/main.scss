@@ -128,6 +128,8 @@ button:hover {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+  margin: 0 10px;
+  border: solid 1px $accent-color-light;
 }
 
 .sub-btn {
