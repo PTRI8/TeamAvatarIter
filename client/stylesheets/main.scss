@@ -4,7 +4,6 @@
 @import './login';
 @import './room';
 
-
 * {
   margin: 0;
   padding: 0;
@@ -25,14 +24,18 @@ body {
   background-color: $background-color-light;
 }
 button:hover {
-    background-color: lighten($accent-color, 20%);
+  background-color: lighten($accent-color, 20%);
 }
 
-.warning, #delete-room-btn {
+.warning,
+#delete-room-btn {
   color: $warning-color;
 }
 
-#root, .app-container, #dashboard, #settings-container {
+#root,
+.app-container,
+#dashboard,
+#settings-container {
   height: 100%;
 }
 
@@ -62,7 +65,7 @@ button:hover {
 }
 .main-nav-btn {
   margin: 0 10px;
-  color:black;
+  color: black;
 }
 .logo {
   font-family: 'Rubik', sans-serif;
@@ -100,7 +103,7 @@ button:hover {
 
 #login-text {
   text-align: center;
-};
+}
 
 #main-container {
   flex: 1;
@@ -129,9 +132,12 @@ button:hover {
   background-size: contain;
   background-repeat: no-repeat;
   margin: 0 10px;
-  border: solid 1px $accent-color-light;
+  border: solid 2px $accent-color-light;
+  border-radius: 10px;
 }
-
+#theme:hover {
+  background-color: rgba(90, 160, 105, 0.3);
+}
 .sub-btn {
-  color:green;
+  color: green;
 }
