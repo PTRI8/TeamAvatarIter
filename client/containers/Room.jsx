@@ -221,7 +221,10 @@ function Room() {
           </div>
         </div>
       </div>
-      <FlashContainer />
+      <button type="button" className="collapsible">Flashcards</button>
+      <div className="content">
+        <FlashContainer />
+      </div>
       <DocumentEditor hostView={hostView}/>
       <Chatbox username={username} roomInfo={state.info}/>
     </div>
