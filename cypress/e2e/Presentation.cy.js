@@ -21,8 +21,12 @@ describe('Main/Top Navigation Bar', () => {
     cy.get("[id='revealColorSelect']").click()
     cy.get("[id='addNewColor']").click()
     cy.get("[style='background-color: rgb(0, 0, 0);']").should("be.visible")
+    cy.contains('Blackboard').click()
 
+    cy.contains('Flashcards').click()
     cy.get("[class='flashcontainer']").should("be.visible")
+    cy.contains('Flashcards').click()
+
     cy.get("[id='chatInput']").should("be.visible")
     cy.contains('Send').should("be.visible")
 
