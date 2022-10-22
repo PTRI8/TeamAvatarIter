@@ -204,7 +204,8 @@ function Room() {
           <div className="controls">
             <div style={{ paddingBottom: '50px' }}>
               <ul>
-                <li className="red selected"></li>
+                <li className="white selected"></li>
+                <li className="red"></li>
                 <li className="blue"></li>
                 <li className="yellow"></li>
               </ul>
