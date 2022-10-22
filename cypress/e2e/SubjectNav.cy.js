@@ -9,17 +9,17 @@ describe('Subject Navigation Bar', () => {
     cy.contains('button','Login').click()
   })
 
-  it('Should return the No Subject page', () => {
-    cy.get("[id='main-container']").get("[id='no-subject']").should("be.visible")
-  })
+  // it('Should return the No Subject page', () => {
+  //   cy.get("[id='main-container']").get("[id='no-subject']").should("be.visible")
+  // })
 
   it('Should return the Math rooms', () => {
     cy.intercept("GET", "http://localhost:8080/api/rooms/math", {
       fixture: "testRooms.json"
     })
-    cy.get("[id='subject-links-container']").get('button').get("[value='math']").click('topLeft')
+    cy.get("[id='subject-links-container']").get('button').get("[value='math']").click()
     cy.get("[id='room-container']").contains('math').should("be.visible")
-    cy.get("[id='room-container']").contains('test Room').click()
+    cy.get("[id='room-container']").contains('Test\'s Room').click()
     cy.get("[id='main-button']").contains('button','Back').click()
   })
 
