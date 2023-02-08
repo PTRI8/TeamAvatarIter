@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Dashboard from '../containers/Dashboard';
 import { Link, redirect, Route, Routes } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import '../stylesheets/main.scss';
 
 const theme = createTheme({
   palette: {
     primary: {
-      light: '#8ad297',
-      main: '#5aa069',
-      dark: '#2a713e',
+      light: '#CCE1EB',
+      main: '#71ABC5',
+      dark: '#0F1031',
       contrastText: '#fff',
     },
     secondary: {
@@ -22,10 +21,10 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: [
+      'Roboto',
       '-apple-system',
       'BlinkMacSystemFont',
       '"Segoe UI"',
-      'Roboto',
       '"Helvetica Neue"',
       'Arial',
       'sans-serif',
@@ -34,7 +33,27 @@ const theme = createTheme({
       '"Segoe UI Symbol"',
     ].join(','),
   },
+  components: {
+    MuiTypography: {
+      defaultProps: {
+        disableRipple: true, // No more ripple, on the whole application 💣!
+      },
+      variantMapping: {
+        h1: 'h2',
+        h2: 'h2',
+        h3: 'h2',
+        h4: 'h2',
+        h5: 'h2',
+        h6: 'h2',
+        subtitle1: 'h2',
+        subtitle2: 'h2',
+        body1: 'span',
+        body2: 'span',
+      },
+    },
+  },
 });
+
 
 function App() {
   return (<ThemeProvider theme={theme}>
