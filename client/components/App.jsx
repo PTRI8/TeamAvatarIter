@@ -2,6 +2,7 @@ import React from 'react';
 import Dashboard from '../containers/Dashboard';
 import { Link, redirect, Route, Routes } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Typography } from '@mui/material';
 
 
 const theme = createTheme({
@@ -38,18 +39,6 @@ const theme = createTheme({
       defaultProps: {
         disableRipple: true, // No more ripple, on the whole application 💣!
       },
-      variantMapping: {
-        h1: 'h2',
-        h2: 'h2',
-        h3: 'h2',
-        h4: 'h2',
-        h5: 'h2',
-        h6: 'h2',
-        subtitle1: 'h2',
-        subtitle2: 'h2',
-        body1: 'span',
-        body2: 'span',
-      },
     },
   },
 });
@@ -57,7 +46,7 @@ const theme = createTheme({
 
 function App() {
   return (<ThemeProvider theme={theme}>
-    <Dashboard/>
+      <Dashboard/>
   </ThemeProvider>);
 }
 

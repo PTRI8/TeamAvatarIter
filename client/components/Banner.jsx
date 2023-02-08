@@ -1,14 +1,19 @@
+/* eslint-disable indent */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Grid, Container, Button, TextField, Stack } from '@mui/material';
-import logo from '../assets/Logo2.png';
+import { Grid, Container, Typography, Button, TextField, Stack, InputAdornment } from '@mui/material';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 const linkStyle = {
   textDecoration: 'none',
   color: 'black'
 };
 
-
+const btnStyle = {minWidth: 150, 
+  textTransform: 'unset',
+  color: 'palette.primary.dark',
+  fontSize: 18,
+};
 
 function Banner(){
   const handleClick = () => {
@@ -25,22 +30,25 @@ function Banner(){
         spacing={5}
         margin={10}>
 
-        <Grid>
-          <Button 
-            sx= {{ 
-              minHeight: 59, 
-              minWidth: 140, 
-              marginBottom: 0 }} 
-            style= {{backgroundImage:`url(${logo})`}}>
-          </Button></Grid> 
-
-        <Container>This is filler text</Container>
+        <Container >
+          <Typography variant="h1">Kafé </Typography>
+          <Typography variant="h2">is a monitoring, visualization, and management tool for Apache Kafka </Typography>
+          </Container>
 
         <Stack 
           direction="row" 
           spacing={5}>
-          <Button variant="contained" sx={{height:56}}>Get Started</Button>
-          <TextField id='text-field' value= 'npm install kafe-dlq' onClick = {handleClick}/>  
+          <Button 
+            variant="contained" 
+            sx={btnStyle}>
+              Get Started</Button>
+          <TextField id='text-field' value= 'npm install kafe-dlq' sx={{fontSize: 18}} InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <ContentCopyIcon />
+              </InputAdornment>
+            ),
+          }} onClick = {handleClick}></TextField>  
         </Stack>
 
       </Stack>
