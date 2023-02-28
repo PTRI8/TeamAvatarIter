@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import Dashboard from '../containers/Dashboard';
 import { Link, redirect, Route, Routes } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-import '../stylesheets/main.scss';
+import { Button } from '@mui/material';
 
 const theme = createTheme({
   palette: {
@@ -39,6 +38,7 @@ const theme = createTheme({
 function App() {
   return (<ThemeProvider theme={theme}>
     <Dashboard/>
+    <Button />
   </ThemeProvider>);
 }
 

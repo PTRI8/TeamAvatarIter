@@ -1,5 +1,5 @@
 {
-  "name": "scratch-project",
+  "name": "react-template",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,16 +9,9 @@
     "windev": "concurrently \"nodemon server/server.js\" \"webpack-dev-server --open\"",
     "start": "nodemon server/server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/TassledWobbegong8/scratch-project.git"
-  },
-  "author": "Team Avatar",
+  "author": "PTRI 8",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/TassledWobbegong8/scratch-project/issues"
-  },
-  "homepage": "https://github.com/TassledWobbegong8/scratch-project#readme",
+  "homepage": "",
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
